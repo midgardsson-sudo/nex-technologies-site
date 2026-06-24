@@ -9,7 +9,6 @@
 :root {
   --bg: #050706;
   --panel: #0b1110;
-  --panel2: #111916;
   --line: #20332f;
   --text: #f4f7f2;
   --muted: #b8c5bd;
@@ -23,25 +22,24 @@
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(94,231,255,.11), transparent 34%),
+    radial-gradient(circle at top left, rgba(94,231,255,.13), transparent 34%),
     radial-gradient(circle at top right, rgba(136,217,165,.10), transparent 30%),
     var(--bg);
   color: var(--text);
   font-family: Arial, sans-serif;
-  line-height: 1.5;
 }
 
 .wrap {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: auto;
-  padding: 22px;
+  padding: 24px;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 24px;
+  padding: 14px 0;
 }
 
 .logo {
@@ -54,7 +52,7 @@ nav {
 
 .navlinks {
   display: flex;
-  gap: 18px;
+  gap: 20px;
   font-size: 14px;
 }
 
@@ -64,12 +62,11 @@ nav {
 }
 
 .hero {
-  min-height: 70vh;
+  min-height: 82vh;
   display: grid;
   grid-template-columns: 1.1fr .9fr;
-  gap: 28px;
+  gap: 40px;
   align-items: center;
-  padding: 36px 0 46px;
 }
 
 .badge {
@@ -81,32 +78,29 @@ nav {
 }
 
 h1 {
-  font-size: clamp(48px, 8vw, 88px);
-  line-height: .9;
-  margin: 14px 0 18px;
+  font-size: clamp(54px, 9vw, 104px);
+  line-height: .88;
+  margin: 16px 0;
 }
 
 h2 {
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(30px, 5vw, 50px);
   line-height: 1;
-  margin: 0 0 14px;
+  margin: 0 0 18px;
   color: var(--cyan);
 }
 
 p {
   color: var(--muted);
-  font-size: 18px;
-  margin: 0 0 14px;
-}
-
-.short {
-  max-width: 680px;
+  font-size: 19px;
+  line-height: 1.55;
+  max-width: 700px;
 }
 
 .button {
   display: inline-block;
-  margin-top: 14px;
-  padding: 14px 20px;
+  margin-top: 18px;
+  padding: 14px 22px;
   border-radius: 999px;
   background: var(--cyan);
   color: #031014;
@@ -121,19 +115,12 @@ p {
   margin-left: 8px;
 }
 
-.panel, .card {
+.panel {
   background: rgba(11,17,16,.88);
   border: 1px solid var(--line);
-  border-radius: 24px;
-}
-
-.panel {
-  padding: 26px;
+  border-radius: 30px;
+  padding: 30px;
   box-shadow: 0 22px 70px rgba(0,0,0,.35);
-}
-
-.hero-panel {
-  border-left: 3px solid var(--cyan);
 }
 
 .kicker {
@@ -142,115 +129,43 @@ p {
   text-transform: uppercase;
   letter-spacing: .14em;
   font-size: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-section {
-  border-top: 1px solid var(--line);
-  padding: 42px 0;
-}
-
-.quick {
+.rooms {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 18px;
+  padding: 42px 0 70px;
+  border-top: 1px solid var(--line);
 }
 
-.quick .card {
-  padding: 18px;
-}
-
-.quick strong {
-  display: block;
-  font-size: 18px;
-  color: var(--text);
-}
-
-.quick span {
-  display: block;
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.card {
-  padding: 22px;
-}
-
-.card strong {
-  display: block;
-  color: var(--text);
-  margin-bottom: 8px;
-  font-size: 18px;
-}
-
-.forge-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.forge-item {
-  padding: 18px;
-  min-height: 130px;
-}
-
-.forge-item b {
-  display: block;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.forge-item span {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.offer {
-  background:
-    linear-gradient(135deg, rgba(94,231,255,.11), transparent 38%),
-    linear-gradient(315deg, rgba(136,217,165,.08), transparent 38%),
-    var(--panel2);
-  border-color: rgba(94,231,255,.45);
-}
-
-.labs {
-  background:
-    linear-gradient(135deg, rgba(240,164,90,.08), transparent 34%),
-    linear-gradient(315deg, rgba(94,231,255,.08), transparent 38%),
-    rgba(11,17,16,.88);
-}
-
-.process {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.process div {
-  padding: 16px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.035);
+.room {
+  min-height: 170px;
+  padding: 24px;
+  background: rgba(11,17,16,.88);
   border: 1px solid var(--line);
+  border-radius: 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform .2s ease, border-color .2s ease;
 }
 
-.process b {
-  color: var(--cyan);
+.room:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyan);
 }
 
-.about-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+.room strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.room span {
+  display: block;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 footer {
@@ -264,45 +179,15 @@ footer {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding-top: 24px;
-  }
-
-  .hero-panel {
-    display: none;
+    padding: 50px 0;
   }
 
   .navlinks {
     display: none;
   }
 
-  .quick {
+  .rooms {
     grid-template-columns: 1fr;
-  }
-
-  .forge-list {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .process {
-    grid-template-columns: 1fr;
-  }
-
-  .about-split {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .wrap {
-    padding: 18px;
-  }
-
-  h1 {
-    font-size: 52px;
-  }
-
-  p {
-    font-size: 16px;
   }
 
   .button,
@@ -310,14 +195,6 @@ footer {
     display: block;
     text-align: center;
     margin-left: 0;
-  }
-
-  .forge-list {
-    grid-template-columns: 1fr;
-  }
-
-  section {
-    padding: 34px 0;
   }
 }
 </style>
@@ -327,13 +204,13 @@ footer {
 <div class="wrap">
 
 <nav>
-  <div class="logo">Yewforge <span>Digital</span></div>
+  <a class="logo" href="index.html" style="color:inherit;text-decoration:none;">Yewforge <span>Digital</span></a>
   <div class="navlinks">
-    <a href="#forge">What We Forge</a>
-    <a href="#labs">Labs</a>
-    <a href="#offer">Starter</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="forge.html">What We Forge</a>
+    <a href="labs.html">Labs</a>
+    <a href="starter.html">Starter</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </div>
 </nav>
 
@@ -341,16 +218,16 @@ footer {
   <div>
     <div class="badge">Local business technology</div>
     <h1>You found us.</h1>
-    <p class="short">
-      Now let’s forge the future of your business. Websites, AI assistants,
-      apps and practical tech support — crafted for local businesses that want
+    <p>
+      Now let’s forge the future of your business. Yewforge Digital builds practical
+      websites, AI assistants, apps and technology support for local businesses ready
       to modernise without the agency nonsense.
     </p>
-    <a class="button" href="mailto:jakeevansyt@gmail.com">Start a Free Consultation</a>
-    <a class="button secondary" href="#forge">See What We Forge</a>
+    <a class="button" href="contact.html">Start a Free Consultation</a>
+    <a class="button secondary" href="forge.html">Enter The Forge</a>
   </div>
 
-  <aside class="panel hero-panel">
+  <aside class="panel">
     <div class="kicker">Crafted, not mass-produced</div>
     <h2>Useful tech. Built around your business.</h2>
     <p>
@@ -360,164 +237,36 @@ footer {
   </aside>
 </header>
 
-<section>
-  <div class="quick">
-    <div class="card">
-      <strong>More enquiries</strong>
-      <span>Capture customers when staff are busy.</span>
-    </div>
-    <div class="card">
-      <strong>Less admin</strong>
-      <span>Reduce repetitive questions and manual follow-up.</span>
-    </div>
-    <div class="card">
-      <strong>Better presence</strong>
-      <span>Look credible when customers search for you.</span>
-    </div>
-  </div>
-</section>
+<section class="rooms">
+  <a class="room" href="forge.html">
+    <strong>What We Forge</strong>
+    <span>Websites, AI assistants, apps, support and business systems.</span>
+  </a>
 
-<section id="forge">
-  <div class="kicker">What We Forge</div>
-  <h2>Digital tools with a practical purpose.</h2>
-  <p class="short">
-    Start small, solve something real, then build from there.
-  </p>
+  <a class="room" href="labs.html">
+    <strong>Yewforge Labs</strong>
+    <span>Our own technology, frameworks and internal tools under development.</span>
+  </a>
 
-  <div class="forge-list">
-    <div class="card forge-item">
-      <b>Websites</b>
-      <span>Modern mobile-friendly sites that build trust.</span>
-    </div>
-    <div class="card forge-item">
-      <b>AI Assistants</b>
-      <span>Answer questions and capture enquiries.</span>
-    </div>
-    <div class="card forge-item">
-      <b>Apps</b>
-      <span>Simple tools shaped around your workflow.</span>
-    </div>
-    <div class="card forge-item">
-      <b>Tech Support</b>
-      <span>Software, hardware and setup help.</span>
-    </div>
-    <div class="card forge-item">
-      <b>Business Systems</b>
-      <span>Make daily operations smoother.</span>
-    </div>
-  </div>
-</section>
+  <a class="room" href="starter.html">
+    <strong>Starter Package</strong>
+    <span>A practical first step for local businesses from £199.</span>
+  </a>
 
-<section id="labs">
-  <div class="panel labs">
-    <div class="kicker">Yewforge Labs</div>
-    <h2>We are building our own technology too.</h2>
-    <p class="short">
-      Yewforge Digital is not only a service provider. We are developing internal
-      tools, AI systems, workflows and digital frameworks so future client solutions
-      can become faster, smarter and more affordable.
-    </p>
+  <a class="room" href="about.html">
+    <strong>About Yewforge</strong>
+    <span>The story, the philosophy, and the person behind the forge.</span>
+  </a>
 
-    <div class="grid">
-      <div class="card">
-        <strong>AI Assistant Frameworks</strong>
-        Foundations for customer assistants, booking helpers, enquiry capture and business support tools.
-      </div>
+  <a class="room" href="contact.html">
+    <strong>Contact</strong>
+    <span>You found us. Let’s forge what comes next.</span>
+  </a>
 
-      <div class="card">
-        <strong>Workflow Intelligence</strong>
-        Systems designed to organise tasks, reduce repetitive admin and make operations clearer.
-      </div>
-
-      <div class="card">
-        <strong>Mobile Review Tools</strong>
-        Lightweight review systems for testing content, ideas, designs and client materials quickly.
-      </div>
-
-      <div class="card">
-        <strong>Human-Centred AI Interfaces</strong>
-        Interfaces designed to make AI feel useful, understandable and genuinely supportive.
-      </div>
-    </div>
-
-    <p class="short">
-      These technologies are being developed carefully and practically, with the long-term
-      goal of giving small businesses access to tools that usually only larger companies can afford.
-    </p>
-  </div>
-</section>
-
-<section id="offer">
-  <div class="panel offer">
-    <div class="kicker">First step</div>
-    <h2>Local Business Digital Starter</h2>
-    <p>
-      A compact starting package for businesses that want practical improvement
-      without committing to a large project.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <strong>Review</strong>
-        Website, customer journey and technology gaps.
-      </div>
-      <div class="card">
-        <strong>Plan</strong>
-        Clear recommendations for the best next move.
-      </div>
-      <div class="card">
-        <strong>Prototype</strong>
-        A simple website improvement or AI assistant demo.
-      </div>
-    </div>
-
-    <p><strong>Starting from £199.</strong></p>
-    <a class="button" href="mailto:jakeevansyt@gmail.com">Ask About The Starter</a>
-  </div>
-</section>
-
-<section>
-  <div class="kicker">How it works</div>
-  <h2>Discover. Shape. Forge. Refine. Support.</h2>
-
-  <div class="process">
-    <div><b>Discover</b><br>Understand the problem.</div>
-    <div><b>Shape</b><br>Plan the right solution.</div>
-    <div><b>Forge</b><br>Build the useful thing.</div>
-    <div><b>Refine</b><br>Test and improve it.</div>
-    <div><b>Support</b><br>Keep it moving.</div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="kicker">About Yewforge</div>
-  <h2>Technology should remove friction.</h2>
-
-  <div class="about-split">
-    <div class="card">
-      <strong>Why Yewforge exists</strong>
-      Small businesses deserve modern technology without jargon, inflated agency
-      costs, or systems they do not need.
-    </div>
-    <div class="card">
-      <strong>About Jake</strong>
-      Founded by Jake Evans, Yewforge Digital combines practical technology,
-      AI-assisted development, systems thinking and small-business problem solving.
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="panel">
-    <div class="kicker">Forge Your Future</div>
-    <h2>You found us. Let’s forge what comes next.</h2>
-    <p>
-      Whether you need a website, an AI assistant, a custom tool or advice on
-      where to begin — start with a quick conversation.
-    </p>
-    <a class="button" href="mailto:jakeevansyt@gmail.com">Contact Yewforge Digital</a>
-    <p style="margin-top:16px;">Email: jakeevansyt@gmail.com</p>
-  </div>
+  <a class="room" href="labs.html">
+    <strong>Future Technologies</strong>
+    <span>AI-assisted business support, workflow intelligence and client-focused systems.</span>
+  </a>
 </section>
 
 <footer>
