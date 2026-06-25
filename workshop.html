@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Workshop — Yewforge Digital</title>
+
+<style>
+:root {
+  --bg:#050706;
+  --panel:#0b1110;
+  --line:#20332f;
+  --text:#f4f7f2;
+  --muted:#b8c5bd;
+  --cyan:#5ee7ff;
+  --green:#88d9a5;
+  --ember:#f0a45a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top left,rgba(94,231,255,.12),transparent 34%),
+    radial-gradient(circle at top right,rgba(136,217,165,.10),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+.wrap{max-width:1180px;margin:auto;padding:24px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.logo{font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:inherit;text-decoration:none}
+.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:20px;font-size:14px}
+.navlinks a{color:var(--muted);text-decoration:none}
+.hero{padding:80px 0 50px;max-width:900px}
+.badge,.kicker{color:var(--ember);text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:900}
+h1{font-size:clamp(48px,8vw,92px);line-height:.9;margin:16px 0}
+h2{color:var(--cyan);font-size:clamp(30px,5vw,52px);line-height:1;margin:0 0 18px}
+p{color:var(--muted);font-size:19px;line-height:1.55}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:30px 0 60px}
+.step{
+  min-height:220px;
+  background:rgba(11,17,16,.88);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:26px;
+}
+.number{color:var(--cyan);font-weight:900;font-size:14px;margin-bottom:20px}
+.step strong{display:block;font-size:24px;margin-bottom:12px}
+.step span{display:block;color:var(--muted);line-height:1.5}
+.panel{
+  background:
+    linear-gradient(135deg,rgba(94,231,255,.12),transparent 38%),
+    rgba(11,17,16,.92);
+  border:1px solid rgba(94,231,255,.45);
+  border-radius:30px;
+  padding:30px;
+  margin-bottom:50px;
+}
+.button{display:inline-block;margin-top:18px;padding:14px 22px;border-radius:999px;background:var(--cyan);color:#031014;text-decoration:none;font-weight:900}
+footer{border-top:1px solid var(--line);padding:26px 0;color:#81918a;font-size:14px}
+@media(max-width:900px){
+  .navlinks{display:none}
+  .flow{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<nav>
+  <a class="logo" href="index.html">Yewforge <span>Digital</span></a>
+  <div class="navlinks">
+    <a href="forge.html">The Forge</a>
+    <a href="workshop.html">Workshop</a>
+    <a href="labs.html">Laboratory</a>
+    <a href="about.html">Story</a>
+    <a href="contact.html">Begin</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">The Workshop</div>
+  <h1>How we forge useful technology.</h1>
+  <p>
+    Good technology starts with understanding the business. The Workshop is our process:
+    calm, practical, collaborative, and focused on building the right thing first.
+  </p>
+</header>
+
+<section class="flow">
+  <div class="step">
+    <div class="number">01</div>
+    <strong>Discover</strong>
+    <span>We understand your business, your customers, and the problem worth solving.</span>
+  </div>
+
+  <div class="step">
+    <div class="number">02</div>
+    <strong>Shape</strong>
+    <span>We plan a practical solution that fits your workflow, budget, and goals.</span>
+  </div>
+
+  <div class="step">
+    <div class="number">03</div>
+    <strong>Forge</strong>
+    <span>We build the website, assistant, app, support system, or digital tool.</span>
+  </div>
+
+  <div class="step">
+    <div class="number">04</div>
+    <strong>Refine</strong>
+    <span>We test, improve, simplify, and make sure it works clearly.</span>
+  </div>
+
+  <div class="step">
+    <div class="number">05</div>
+    <strong>Support</strong>
+    <span>We stay available for improvements, updates, and future growth.</span>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="kicker">The principle</div>
+  <h2>Technology should remove friction, not create it.</h2>
+  <p>
+    We do not begin by selling a huge package. We begin by finding the next useful step:
+    the improvement that saves time, captures enquiries, builds trust, or makes daily work easier.
+  </p>
+  <a class="button" href="contact.html">Begin Your Project</a>
+</section>
+
+<footer>
+  © 2026 Yewforge Digital — Helping you forge your future business.
+</footer>
+
+</div>
+</body>
+</html>
