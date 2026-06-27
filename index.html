@@ -1,101 +1,535 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrance | Yewforge Digital</title>
-  <meta name="description" content="Enter the Yewforge Campus: a practical digital headquarters for local business websites, AI assistants, apps, support and systems." />
-  <link rel="stylesheet" href="css/campus.css" />
-  <script src="js/campus.js" defer></script>
+  <title>Yewforge Digital — Websites for local businesses</title>
+  <meta name="description" content="Modern websites for local businesses, built by Jake at Yewforge Digital. No jargon, no pressure — practical technology that helps your business grow." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #070707;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .section    { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .section--sm { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+
+    /* ── Nav ────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(7,7,7,0.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: rgba(255,255,255,0.07);
+    }
+    .nav-brand { text-decoration: none; display: flex; align-items: baseline; gap: 4px; }
+    .nav-brand-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; color: #fff; letter-spacing: -0.015em; }
+    .nav-brand-sub  { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.35); letter-spacing: 0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: #fff; }
+    .btn-primary {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 500;
+      color: #070707; background: #22d3ee; padding: 9px 20px; border-radius: 4px;
+      text-decoration: none; transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-primary:hover { background: #67e8f9; }
+    .btn-primary--lg { font-size: 16px; padding: 14px 28px; }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-bg-cyan   { position: absolute; width: 900px; height: 700px; top: -160px; left: -200px; background: radial-gradient(ellipse, rgba(34,211,238,0.065) 0%, transparent 68%); }
+    .hero-bg-amber  { position: absolute; width: 640px; height: 500px; bottom: -60px; right: -80px; background: radial-gradient(ellipse, rgba(245,158,11,0.045) 0%, transparent 65%); }
+    .hero-inner     { position: relative; z-index: 1; width: 100%; }
+    .hero-eyebrow   { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: #22d3ee; margin-bottom: 28px; }
+    .hero-h1        { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(52px,7.8vw,108px); line-height: 1.05; letter-spacing: -0.02em; color: #fff; margin: 0 0 36px; max-width: 960px; }
+    .hero-lead      { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(16px,1.6vw,19px); line-height: 1.8; color: rgba(255,255,255,0.58); max-width: 500px; margin: 0 0 48px; }
+    .hero-ctas      { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .btn-ghost      { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; color: rgba(255,255,255,0.45); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .btn-ghost:hover{ color: #fff; }
+    .hero-sub       { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.2); margin-top: 88px; letter-spacing: 0.06em; text-wrap: pretty; }
+
+    /* ── Typography helpers ─────────────────────────────────────── */
+    .eyebrow        { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: #22d3ee; margin-bottom: 16px; }
+    .eyebrow--amber { color: #f59e0b; }
+    .section-h2     { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px,3.8vw,52px); letter-spacing: -0.015em; color: #fff; line-height: 1.1; text-wrap: pretty; }
+    .section-h2--sm { font-size: clamp(28px,3.2vw,44px); }
+
+    /* ── Grid helpers ───────────────────────────────────────────── */
+    .grid-2       { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .grid-3       { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .grid-2col    { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .grid-2col--center { align-items: center; gap: 96px; }
+
+    /* ── Service cards ──────────────────────────────────────────── */
+    .card         { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 40px; transition: border-color 0.25s, background 0.25s; }
+    .card:hover   { border-color: rgba(34,211,238,0.28); background: rgba(34,211,238,0.025); }
+    .card--amber:hover { border-color: rgba(245,158,11,0.28); background: rgba(245,158,11,0.02); }
+    .card-icon    { width: 36px; height: 36px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+    .card-icon--cyan  { background: rgba(34,211,238,0.1); }
+    .card-icon--amber { background: rgba(245,158,11,0.1); }
+    .card-icon span   { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; }
+    .card-icon--cyan span  { color: #22d3ee; }
+    .card-icon--amber span { color: #f59e0b; }
+    .card-h3      { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.01em; color: #fff; margin: 0 0 12px; }
+    .card-body    { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.48); margin: 0; }
+
+    /* ── Trust strip ────────────────────────────────────────────── */
+    .trust-row  { display: flex; align-items: stretch; }
+    .trust-cell { flex: 1; padding: 48px 40px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .trust-cell:last-child { border-right: none; }
+    .trust-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; color: #fff; margin: 0 0 10px; }
+    .trust-body  { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.42); margin: 0; }
+
+    /* ── Process ────────────────────────────────────────────────── */
+    .process-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+    .process-card  { padding: 40px; border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; background: rgba(255,255,255,0.02); }
+    .process-num   { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 48px; color: rgba(34,211,238,0.1); line-height: 1; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .process-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; color: #fff; margin: 0 0 10px; }
+    .process-body  { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.45); margin: 0; }
+
+    /* ── Pricing ────────────────────────────────────────────────── */
+    .pricing-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+    .pricing-card  { padding: 40px; border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; background: rgba(255,255,255,0.025); display: flex; flex-direction: column; gap: 16px; transition: border-color 0.25s, background 0.25s; }
+    .pricing-card:hover { border-color: rgba(34,211,238,0.28); background: rgba(34,211,238,0.025); }
+    .pricing-card--featured { border-color: rgba(34,211,238,0.2); background: rgba(34,211,238,0.03); }
+    .pricing-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+    .pricing-price { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; color: #22d3ee; letter-spacing: -0.02em; line-height: 1; }
+    .pricing-price--chat { font-size: 24px; color: rgba(255,255,255,0.5); }
+    .pricing-body  { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.5); margin: 0; flex: 1; }
+    .pricing-cta   { display: inline-block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 500; color: #070707; background: #22d3ee; padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: background 0.2s; align-self: flex-start; margin-top: 8px; }
+    .pricing-cta:hover { background: #67e8f9; }
+    .pricing-cta--ghost { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); }
+    .pricing-cta--ghost:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+    /* ── Jake section ───────────────────────────────────────────── */
+    .jake-photo-wrap  { aspect-ratio: 4/5; max-height: 560px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; position: relative; overflow: hidden; }
+    .jake-monogram    { width: 72px; height: 72px; border-radius: 50%; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); display: flex; align-items: center; justify-content: center; }
+    .jake-monogram span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 28px; color: rgba(245,158,11,0.5); }
+    .jake-photo-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.18); letter-spacing: 0.04em; }
+    .jake-amber-glow  { position: absolute; bottom: -24px; right: -24px; width: 180px; height: 180px; background: radial-gradient(ellipse, rgba(245,158,11,0.12) 0%, transparent 70%); pointer-events: none; }
+    .jake-blockquote  { border-left: 2px solid rgba(245,158,11,0.45); padding-left: 18px; margin: 0 0 36px; }
+    .jake-blockquote p { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.7); font-style: italic; margin: 0; }
+    .jake-link        { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 500; color: #22d3ee; text-decoration: none; border-bottom: 1px solid rgba(34,211,238,0.28); padding-bottom: 2px; transition: border-color 0.2s; }
+    .jake-link:hover  { border-color: rgba(34,211,238,0.7); }
+
+    /* ── Work cards ─────────────────────────────────────────────── */
+    .work-card        { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 32px; display: flex; flex-direction: column; gap: 20px; transition: border-color 0.25s; }
+    .work-card--cyan:hover   { border-color: rgba(34,211,238,0.3); }
+    .work-card--banana:hover { border-color: rgba(253,224,71,0.3); }
+    .work-card--white:hover  { border-color: rgba(255,255,255,0.2); }
+    .work-card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .work-card-title  { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #fff; letter-spacing: -0.01em; }
+    .work-badge       { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; white-space: nowrap; }
+    .work-badge--cyan   { color: #22d3ee; background: rgba(34,211,238,0.1); }
+    .work-badge--banana { color: #fde047; background: rgba(253,224,71,0.1); }
+    .work-badge--muted  { color: rgba(255,255,255,0.42); background: rgba(255,255,255,0.06); }
+    .work-preview     { height: 120px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; }
+    .work-preview--cyan   { background: linear-gradient(135deg,rgba(34,211,238,0.07) 0%,transparent 55%),rgba(255,255,255,0.02); }
+    .work-preview--banana { background: linear-gradient(135deg,rgba(253,224,71,0.07) 0%,transparent 55%),rgba(255,255,255,0.02); }
+    .work-preview--white  { background: linear-gradient(135deg,rgba(255,255,255,0.05) 0%,transparent 55%),rgba(255,255,255,0.02); }
+    .work-glyph       { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 56px; letter-spacing: -0.02em; }
+    .work-body        { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.42); margin: 0; }
+
+    /* ── Campus CTA ─────────────────────────────────────────────── */
+    .campus-card         { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 72px 64px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+    .campus-card-glow    { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 85% 50%, rgba(34,211,238,0.05) 0%, transparent 70%); pointer-events: none; }
+    .campus-card-content { position: relative; z-index: 1; max-width: 560px; }
+
+    /* ── Contact ────────────────────────────────────────────────── */
+    .contact-email       { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(17px,2vw,26px); color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 4px; display: inline-block; transition: color 0.2s, border-color 0.2s; }
+    .contact-email:hover { color: #22d3ee; border-color: rgba(34,211,238,0.45); }
+    .contact-chip        { display: block; padding: 18px 20px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .contact-chip:hover  { border-color: rgba(34,211,238,0.25); background: rgba(34,211,238,0.025); }
+    .contact-chip--amber:hover { border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.015); }
+    .contact-chip-title  { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); }
+    .contact-chip-sub    { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    .footer       { border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 32px 48px; max-width: 1200px; margin: 0 auto; }
+    .footer-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: rgba(255,255,255,0.25); }
+    .footer-copy  { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.18); }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav-links          { display: none; }
+      .grid-2             { grid-template-columns: 1fr; }
+      .grid-3             { grid-template-columns: 1fr; }
+      .grid-2col          { grid-template-columns: 1fr; gap: 48px; }
+      .grid-2col--center  { gap: 48px; }
+      .process-grid       { grid-template-columns: 1fr; }
+      .pricing-grid       { grid-template-columns: 1fr; }
+      .trust-row          { flex-direction: column; }
+      .trust-cell         { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .trust-cell:last-child { border-bottom: none; }
+      .campus-card        { flex-direction: column; padding: 48px 32px; }
+      .jake-photo-wrap    { max-height: 320px; }
+      .footer-inner       { flex-direction: column; align-items: flex-start; }
+      /* service card spanning two columns falls back to single */
+      .card[style*="grid-column"] { grid-column: auto !important; }
+    }
+    @media (max-width: 640px) {
+      .container    { padding: 0 24px; }
+      .hero-h1      { font-size: 44px; }
+      .nav          { padding: 0 24px; }
+      .footer-inner { padding: 28px 24px; }
+      .campus-card  { padding: 36px 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+    }
+  </style>
 </head>
-<body data-room="entrance">
-  <div class="site-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html" aria-label="Yewforge Digital Entrance">
-        <span>Yewforge</span>
-        <strong>Digital</strong>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav class="site-nav" id="site-nav" aria-label="Campus rooms">
-        <a href="index.html" aria-current="page">Entrance</a>
-        <a href="forge.html">The Forge</a>
-        <a href="forge-stack.html">Partners</a>
-        <a href="workshop.html">Workshop</a>
-        <a href="laboratory.html">Laboratory</a>
-        <a href="story.html">Story</a>
-        <a href="begin.html">Begin</a>
-      </nav>
-    </header>
-    <section class="build-notice" aria-label="Building in public notice">
-      <p><strong><span class="build-notice-dot" aria-hidden="true"></span>BUILDING IN PUBLIC</strong><span aria-hidden="true"> — </span><span>Yewforge Digital is under active development. In five weeks, we have gone from an idea to working software, AI training experiments, local models, companion-app foundations, and now this website. Keep coming back — there is much more to come.</span></p>
-    </section>
-    <main>
-      <section class="room-hero entrance-hero">
-        <div>
-          <p class="eyebrow">Yewforge Campus</p>
-          <h1>Enter a practical digital headquarters.</h1>
-          <p class="lead">
-            Yewforge Digital builds useful websites, AI assistants, apps and technology support for local businesses ready to modernise without agency noise.
-          </p>
-          <div class="doorway-row">
-            <a class="button" href="forge.html">Enter The Forge</a>
-            <a class="button button-quiet" href="begin.html">Begin a conversation</a>
-          </div>
-        </div>
-        <aside class="purpose-panel">
-          <span class="object-label">Campus sign</span>
-          <p class="eyebrow ember">Orientation</p>
-          <h2>Choose the room that matches your question.</h2>
-          <p>
-            This site is arranged like a small campus: services in the forge, process in the workshop, future ideas in the laboratory, background in the story, and a clear place to begin.
-          </p>
-        </aside>
-      </section>
+<body>
 
-      <section class="room-grid" aria-label="Campus rooms">
-        <a class="room-card" href="forge.html">
-          <span class="object-label">Door plaque</span>
-          <span class="room-marker">01</span>
-          <strong>The Forge</strong>
-          <span>Websites, assistants, apps, support and business systems.</span>
-        </a>
-        <a class="room-card" href="workshop.html">
-          <span class="object-label">Door plaque</span>
-          <span class="room-marker">02</span>
-          <strong>Workshop</strong>
-          <span>The calm, practical process for shaping and building the right thing first.</span>
-        </a>
-        <a class="room-card" href="forge-stack.html">
-          <span class="object-label">Door plaque</span>
-          <span class="room-marker">03</span>
-          <strong>Forge Stack</strong>
-          <span>The active build environment and partnership contact surface.</span>
-        </a>
-        <a class="room-card" href="laboratory.html">
-          <span class="object-label">Door plaque</span>
-          <span class="room-marker">04</span>
-          <strong>Laboratory</strong>
-          <span>Experiments, internal tools and careful future-facing technology.</span>
-        </a>
-        <a class="room-card" href="story.html">
-          <span class="object-label">Door plaque</span>
-          <span class="room-marker">05</span>
-          <strong>Story</strong>
-          <span>The philosophy behind Yewforge and why practical usefulness comes first.</span>
-        </a>
-        <a class="room-card room-card-wide" href="begin.html">
-          <span class="object-label">Door plaque</span>
-          <span class="room-marker">06</span>
-          <strong>Begin</strong>
-          <span>Bring one real problem, bottleneck or idea. We will find the first useful step.</span>
-        </a>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <span>Â© 2026 Yewforge Digital.</span>
-      <span>Helping you forge your future business.</span>
-    </footer>
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="nav" id="yw-nav">
+  <a class="nav-brand" href="#">
+    <span class="nav-brand-name">Yewforge</span>
+    <span class="nav-brand-sub">Digital</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#services">Services</a>
+    <a class="nav-link" href="#process">Process</a>
+    <a class="nav-link" href="#pricing">Pricing</a>
+    <a class="nav-link" href="#jake">About</a>
   </div>
+  <a class="btn-primary" href="#contact">Get in touch</a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-cyan"></div>
+    <div class="hero-bg-amber"></div>
+  </div>
+  <div class="hero-inner container" style="padding-top:120px;padding-bottom:96px;">
+    <p class="hero-eyebrow" data-hero="0">Independent Digital Studio</p>
+    <h1 class="hero-h1" data-hero="80">
+      A website that works<br>
+      as hard as you do.
+    </h1>
+    <p class="hero-lead" data-hero="160">
+      Modern websites for local businesses, built by one developer who cares about getting it right. No jargon, no pressure — just thoughtful technology that helps your business grow.
+    </p>
+    <div class="hero-ctas" data-hero="240">
+      <a class="btn-primary btn-primary--lg" href="#contact">Start a conversation</a>
+      <a class="btn-ghost" href="#services">See what I build <span>↓</span></a>
+    </div>
+    <p class="hero-sub" data-hero="400">
+      Cafés · Restaurants · Barbers · Tradespeople · Independent shops · Consultants · Sole traders
+    </p>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────────────── -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px;">
+      <p class="eyebrow">What I build</p>
+      <h2 class="section-h2" style="max-width:540px;">Focused on outcomes, not technologies.</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal" data-delay="0">
+        <div class="card-icon card-icon--cyan"><span>01</span></div>
+        <h3 class="card-h3">Get online</h3>
+        <p class="card-body">A modern, mobile-friendly website that helps customers understand who you are, what you do, and how to reach you.</p>
+      </div>
+      <div class="card reveal" data-delay="70">
+        <div class="card-icon card-icon--cyan"><span>02</span></div>
+        <h3 class="card-h3">Improve what you have</h3>
+        <p class="card-body">Already have a website? Let's make it faster, clearer and easier to use.</p>
+      </div>
+      <div class="card card--amber reveal" data-delay="140" style="grid-column:1/-1;">
+        <div class="card-icon card-icon--amber"><span>03</span></div>
+        <h3 class="card-h3">Let's solve a problem</h3>
+        <p class="card-body" style="max-width:560px;">Need advice about websites, software or technology? Start with one real problem and we'll work out the right next step.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST STRIP ───────────────────────────────────────── -->
+<section style="border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <div class="container">
+    <div class="trust-row reveal">
+      <div class="trust-cell">
+        <p class="trust-title">Independent</p>
+        <p class="trust-body">No agency overhead. No account managers. Just Jake — accountable for everything that gets built.</p>
+      </div>
+      <div class="trust-cell">
+        <p class="trust-title">Honest</p>
+        <p class="trust-body">I'll tell you when something won't work, when it isn't worth the cost, and when you don't need to spend anything at all.</p>
+      </div>
+      <div class="trust-cell">
+        <p class="trust-title">No lock-in</p>
+        <p class="trust-body">Everything I build is yours. No proprietary platforms you can't leave, no recurring fees for things you can run yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ───────────────────────────────────────────── -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="reveal">
+      <p class="eyebrow">How it works</p>
+      <h2 class="section-h2" style="max-width:520px;">Simple from the first conversation.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-card reveal" data-delay="0">
+        <div class="process-num">01</div>
+        <p class="process-title">Start with one real thing</p>
+        <p class="process-body">Tell me what's frustrating, slow or missing. No forms, no spec documents — just a conversation about your business.</p>
+      </div>
+      <div class="process-card reveal" data-delay="80">
+        <div class="process-num">02</div>
+        <p class="process-title">We shape the right solution</p>
+        <p class="process-body">I'll be honest about what will help and what won't. Then I'll give you a clear plan before anything gets built.</p>
+      </div>
+      <div class="process-card reveal" data-delay="160">
+        <div class="process-num">03</div>
+        <p class="process-title">You get something that works</p>
+        <p class="process-body">A website you own, understand and can update. Delivered properly, without the wait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ───────────────────────────────────────────── -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="reveal">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="section-h2" style="max-width:480px;">Clear prices. No surprises.</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal" data-delay="0">
+        <p class="pricing-label">Website Starter</p>
+        <p class="pricing-price">From £199</p>
+        <p class="pricing-body">Perfect for getting online fast. A clean, mobile-friendly site with everything a new business needs to look credible and capture enquiries.</p>
+        <a class="pricing-cta" href="/cdn-cgi/l/email-protection#354c5042535a4752501b455447415b5047465d5c4546755258545c591b565a580a4640575f50564108625057465c4150156641544741504715505b44405c474c">Get started</a>
+      </div>
+      <div class="pricing-card pricing-card--featured reveal" data-delay="80">
+        <p class="pricing-label">Business Website</p>
+        <p class="pricing-price">From £399</p>
+        <p class="pricing-body">A fuller site with more pages, more detail, and more room to grow. Designed around your specific business, not a template.</p>
+        <a class="pricing-cta" href="/cdn-cgi/l/email-protection#4c35293b2a233e2b29623c2d3e3822293e3f24253c3f0c2b212d2520622f2321733f392e26292f38710e393f2522293f3f6c1b292e3f2538296c29223d39253e35">Get started</a>
+      </div>
+      <div class="pricing-card reveal" data-delay="160">
+        <p class="pricing-label">Something different?</p>
+        <p class="pricing-price pricing-price--chat">Let's chat</p>
+        <p class="pricing-body">Need a booking system, an AI assistant, software advice or something more specific? Start with one real problem and we'll work out the right next step.</p>
+        <a class="pricing-cta pricing-cta--ghost" href="/cdn-cgi/l/email-protection#b8c1ddcfded7cadfdd96c8d9caccd6ddcacbd0d1c8cbf8dfd5d9d1d496dbd7d587cbcddad2dddbcc85fbcdcbccd7d598c8cad7d2dddbcc98ddd6c9cdd1cac1">Start a conversation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEET JAKE ─────────────────────────────────────────── -->
+<section class="section" id="jake">
+  <div class="container">
+    <div class="grid-2col grid-2col--center">
+      <div>
+        <p class="eyebrow eyebrow--amber reveal">Meet Jake</p>
+        <h2 class="section-h2 section-h2--sm reveal" style="margin-bottom:28px;">A developer who builds things that actually help.</h2>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.8;color:rgba(255,255,255,0.55);margin:0 0 18px;" class="reveal">
+          I started YewForge because local businesses deserve the same quality of digital work that large companies get — without the inflated cost, the jargon, or the oversized proposal.
+        </p>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.8;color:rgba(255,255,255,0.55);margin:0 0 36px;" class="reveal">
+          The best first project is almost always the smallest one that solves a real problem. If something won't genuinely help your business, I won't build it.
+        </p>
+        <blockquote class="jake-blockquote reveal">
+          <p>"Build the right thing first. Then build it well."</p>
+        </blockquote>
+        <a class="jake-link reveal" href="/cdn-cgi/l/email-protection#11687466777e6376743f617063657f7463627978616251767c70787d3f727e7c2e6264737b7472652c59747d7d7e315b707a74">Say hello →</a>
+      </div>
+      <div class="reveal">
+        <div class="jake-photo-wrap">
+          <div class="jake-monogram"><span>J</span></div>
+          <p class="jake-photo-label">← Add a photo of Jake here</p>
+          <div class="jake-amber-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SELECTED WORK ─────────────────────────────────────── -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2 class="section-h2 section-h2--sm">Craft over portfolio.</h2>
+      </div>
+      <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:rgba(255,255,255,0.35);max-width:340px;line-height:1.65;margin:0;text-wrap:pretty;">These aren't client case studies. They're real systems — built to show how I think, design and solve problems.</p>
+    </div>
+    <div class="grid-3">
+      <div class="work-card work-card--cyan reveal" data-delay="0">
+        <div class="work-card-header">
+          <span class="work-card-title">Fenryr</span>
+          <span class="work-badge work-badge--cyan">System</span>
+        </div>
+        <div class="work-preview work-preview--cyan">
+          <span class="work-glyph" style="color:rgba(34,211,238,0.12);">F</span>
+        </div>
+        <p class="work-body">A governed operational companion for structured decision-making and evidence management.</p>
+      </div>
+      <div class="work-card work-card--banana reveal" data-delay="80">
+        <div class="work-card-header">
+          <span class="work-card-title">YewFix</span>
+          <span class="work-badge work-badge--banana">Diagnostics</span>
+        </div>
+        <div class="work-preview work-preview--banana">
+          <span class="work-glyph" style="color:rgba(253,224,71,0.14);">Y</span>
+        </div>
+        <p class="work-body">A diagnostic workspace for tracking, reviewing and resolving technical events. Fast, bounded and efficient.</p>
+      </div>
+      <div class="work-card work-card--white reveal" data-delay="160">
+        <div class="work-card-header">
+          <span class="work-card-title">Campus</span>
+          <span class="work-badge work-badge--muted">Environment</span>
+        </div>
+        <div class="work-preview work-preview--white">
+          <span class="work-glyph" style="color:rgba(255,255,255,0.07);">C</span>
+        </div>
+        <p class="work-body">The immersive studio you're already in — built to show how YewForge thinks and works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CAMPUS INVITE ─────────────────────────────────────── -->
+<section class="section--sm">
+  <div class="container">
+    <div class="campus-card reveal">
+      <div class="campus-card-glow"></div>
+      <div class="campus-card-content">
+        <p class="eyebrow">The bigger picture</p>
+        <h2 class="section-h2 section-h2--sm" style="margin-bottom:16px;">Curious how YewForge is built?</h2>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.7;color:rgba(255,255,255,0.48);margin:0;">
+          The Campus is a separate, immersive environment where you can explore the forge, the laboratory, the process and the story behind the work.
+        </p>
+      </div>
+      <a class="btn-primary btn-primary--lg" href="campus.html" style="position:relative;z-index:1;flex-shrink:0;">
+        Explore the Campus →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────────────── -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="grid-2col">
+      <div>
+        <p class="eyebrow reveal">Get in touch</p>
+        <h2 class="section-h2 section-h2--sm reveal" style="margin-bottom:24px;">Start with one real problem.</h2>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.8;color:rgba(255,255,255,0.52);margin:0 0 48px;" class="reveal">
+          You don't need a perfect brief. Tell me what's not working, what's slow, or what you wish your business could do. I usually respond within a day.
+        </p>
+        <a class="contact-email reveal" href="/cdn-cgi/l/email-protection#8af3effdece5f8edefa4faebf8fee4eff8f9e2e3faf9caede7ebe3e6a4e9e5e7"><span class="__cf_email__" data-cfemail="b6cfd3c1d0d9c4d1d398c6d7c4c2d8d3c4c5dedfc6c5f6d1dbd7dfda98d5d9db">[email&#160;protected]</span></a>
+      </div>
+      <div class="reveal">
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.25);margin-bottom:16px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;">Common starting points</p>
+        <div style="display:flex;flex-direction:column;gap:2px;">
+          <a class="contact-chip" href="/cdn-cgi/l/email-protection#c0b9a5b7a6afb2a7a5eeb0a1b2b4aea5b2b3a8a9b0b380a7ada1a9aceea3afadffb3b5a2aaa5a3b4fd8ea5b7e0b7a5a2b3a9b4a5e0a6afb2e0adb9e0a2b5b3a9aea5b3b3">
+            <span class="contact-chip-title">I need a new website</span>
+            <span class="contact-chip-sub">Opens an email conversation</span>
+          </a>
+          <a class="contact-chip" href="/cdn-cgi/l/email-protection#c5bca0b2a3aab7a2a0ebb5a4b7b1aba0b7b6adacb5b685a2a8a4aca9eba6aaa8fab6b0a7afa0a6b1f888bce5b2a0a7b6acb1a0e5aba0a0a1b6e5b0b5a1a4b1acaba2">
+            <span class="contact-chip-title">My website is outdated</span>
+            <span class="contact-chip-sub">Opens an email conversation</span>
+          </a>
+          <a class="contact-chip" href="/cdn-cgi/l/email-protection#61180416070e1306044f110013150f0413120908111221060c00080d4f020e0c5e1214030b0402155c350402090f0e0d0e061841000517080204">
+            <span class="contact-chip-title">I have a technology question</span>
+            <span class="contact-chip-sub">Opens an email conversation</span>
+          </a>
+          <a class="contact-chip contact-chip--amber" href="/cdn-cgi/l/email-protection#96eff3e1f0f9e4f1f3b8e6f7e4e2f8f3e4e5feffe6e5d6f1fbf7fffab8f5f9fba9e5e3f4fcf3f5e2abd7dfb6e2f9f9fae5b6f0f9e4b6fbefb6f4e3e5fff8f3e5e5">
+            <span class="contact-chip-title">I'm curious about AI for my business</span>
+            <span class="contact-chip-sub">Opens an email conversation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Yewforge Digital</span>
+    <span class="footer-copy">&copy; <span id="yr"></span> &middot; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="255c4052434a5742400b554457514b4057564d4c5556654248444c490b464a48">[email&#160;protected]</a></span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Year ──────────────────────────────────────────────────
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ── Nav scroll blur ───────────────────────────────────────
+  var nav = document.getElementById('yw-nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 48) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // ── Hero entrance (JS-driven, survives re-renders) ────────
+  document.querySelectorAll('[data-hero]').forEach(function(el) {
+    var delay = parseInt(el.getAttribute('data-hero') || '0');
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1)';
+    setTimeout(function() {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, delay + 80);
+  });
+
+  // ── Scroll reveals ────────────────────────────────────────
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var delay = parseInt(el.getAttribute('data-delay') || '0');
+      setTimeout(function() {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, delay);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+
+  reveals.forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = 'opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1)';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
