@@ -1675,7 +1675,7 @@ body[data-room="forge-stack"] .build-notice {
   }
 
   .build-notice strong::after {
-    content: " —";
+    content: " &mdash;";
   }
   .site-shell {
     width: min(100% - 24px, 1180px);
@@ -1777,3 +1777,5 @@ body[data-room="forge-stack"] .build-notice {
     width: 100%;
   }
 }
+
+
