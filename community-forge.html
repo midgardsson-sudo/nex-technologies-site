@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Forge | YewForge Digital Campus</title>
+  <meta name="description" content="Community Forge highlights local charities, projects and community organisations around Weston-super-Mare and North Somerset for recognition and visibility." />
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="canonical" href="https://yewforge-digital.co.uk/community-forge.html" />
+  <meta property="og:title" content="Community Forge | YewForge Digital Campus" />
+  <meta property="og:description" content="Recognition and visibility for good local work. YewForge does not collect donations or process payments." />
+  <meta property="og:url" content="https://yewforge-digital.co.uk/community-forge.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://yewforge-digital.co.uk/assets/yewforge-og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Community Forge | YewForge Digital Campus" />
+  <meta name="twitter:description" content="Recognition and visibility for good local work. YewForge does not collect donations or process payments." />
+  <meta name="twitter:image" content="https://yewforge-digital.co.uk/assets/yewforge-og-image.png" />
+  <link rel="stylesheet" href="css/campus.css" />
+  <link rel="stylesheet" href="css/pippup.css" />
+  <script src="js/campus.js" defer></script>
+  <script src="js/pippup.js" defer></script>
+  <style>
+/* Room tag bar */
+    .cf-room-bar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px;
+      font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase;
+      color: rgba(245,158,11,0.5);
+    }
+    .cf-room-bar-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+    }
+
+    /* ── TYPOGRAPHY HELPERS ── */
+    .eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .eyebrow-lime { color: var(--lime); }
+
+    h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: clamp(44px,7vw,88px); line-height: 1.05; letter-spacing: -0.02em;
+      color: #fff; margin-bottom: 28px; }
+    h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: clamp(28px,3.8vw,48px); letter-spacing: -0.015em;
+      color: #fff; line-height: 1.1; margin-bottom: 16px; }
+    h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: clamp(18px,2vw,22px); letter-spacing: -0.01em;
+      color: #fff; margin-bottom: 10px; }
+    p { color: rgba(255,255,255,0.52); margin-bottom: 16px; line-height: 1.7; }
+    p:last-child { margin-bottom: 0; }
+    .lead { font-size: clamp(16px,1.6vw,19px); line-height: 1.8; color: rgba(255,255,255,0.58); }
+    strong { color: rgba(255,255,255,0.78); font-weight: 600; }
+
+    /* ── SECTION ── */
+    .section { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .section--sm { padding: 72px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .section-hd { margin-bottom: 48px; }
+    .section-hd h2 { margin-bottom: 8px; }
+    .section-hd p { max-width: 480px; font-size: 15px; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 500;
+      color: #070707; background: var(--accent); padding: 12px 24px;
+      border: 1px solid var(--accent); border-radius: 4px;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .btn-outline {
+      background: transparent; color: rgba(255,255,255,0.55);
+      border-color: rgba(255,255,255,0.14);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.25); }
+    .btn-lime { color: #070707; background: var(--lime); border-color: var(--lime); }
+    .btn-lime:hover { background: #a3e635; border-color: #a3e635; }
+    .btn-sm { font-size: 13px; padding: 9px 18px; }
+
+    /* ── HERO ── */
+    .cf-hero {
+      padding: 80px 0 72px;
+      position: relative;
+    }
+    .cf-hero::before {
+      content: "";
+      position: absolute; top: -120px; left: -200px;
+      width: 700px; height: 560px;
+      background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cf-hero-inner { position: relative; z-index: 1; }
+    .cf-hero h1 em { font-style: normal; color: var(--accent); }
+    .cf-hero-promise {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 40px;
+      padding: 11px 20px;
+      border: 1px solid rgba(132,204,22,0.24);
+      border-radius: 4px;
+      background: rgba(132,204,22,0.05);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; font-weight: 600; color: #84cc16;
+      letter-spacing: 0.02em;
+    }
+    .cf-hero-promise::before { content: "✦"; opacity: 0.7; }
+
+    /* ── SPOTLIGHT ── */
+    .cf-spotlight {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(245,158,11,0.22);
+      border-radius: 6px; overflow: hidden;
+    }
+    .cf-spotlight-visual {
+      min-height: 380px;
+      background: linear-gradient(145deg, rgba(30,18,4,0.95) 0%, rgba(12,9,4,1) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      border-right: 1px solid rgba(245,158,11,0.12);
+    }
+    .cf-spotlight-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(245,158,11,0.12) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(7,7,7,0.08), rgba(7,7,7,0.36));
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Future spotlight images should use high-resolution originals where possible. If only a small source is available, keep object-fit: contain to avoid obvious pixelation. */
+    .cf-spotlight-image {
+      position: relative; z-index: 0;
+      display: block;
+      width: auto; height: auto;
+      max-width: calc(100% - 44px);
+      max-height: calc(100% - 44px);
+      object-fit: contain;
+      object-position: center;
+      border-radius: 6px;
+      border: 1px solid rgba(245,174,91,0.18);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.44);
+      background: rgba(7,7,7,0.5);
+    }
+    .cf-spotlight-logo-badge {
+      position: absolute; left: 18px; bottom: 18px; z-index: 2;
+      width: min(172px, calc(100% - 36px));
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: rgba(255,250,240,0.92);
+      border: 1px solid rgba(245,174,91,0.3);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.34);
+    }
+    .cf-spotlight-logo-badge img {
+      display: block; width: 100%; height: auto;
+    }
+    .cf-spotlight-media-credit {
+      position: absolute; top: 18px; left: 18px; z-index: 2;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: rgba(255,242,215,0.72);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.72);
+    }
+    .cf-spotlight-body { padding: 48px; display: flex; flex-direction: column; gap: 18px; justify-content: center; }
+    .cf-spotlight-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 2px;
+      background: rgba(132,204,22,0.08); border: 1px solid rgba(132,204,22,0.2);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase; color: #84cc16;
+      width: fit-content;
+    }
+    .cf-spotlight-body h3 { font-size: clamp(22px,2.8vw,32px); margin-bottom: 0; }
+    .cf-spotlight-body p { font-size: 15px; color: rgba(255,255,255,0.55); }
+    .cf-spot-location {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.28); font-weight: 500; letter-spacing: 0.02em;
+    }
+    .cf-spot-location svg { flex-shrink: 0; }
+    .cf-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+    .cf-disclaimer {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px;
+      color: rgba(255,255,255,0.22); line-height: 1.55;
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 14px;
+      margin-top: 4px;
+    }
+
+    /* ── VOTE ── */
+    .cf-vote-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .cf-nominee {
+      background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px; padding: 32px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .cf-nominee:hover { border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.02); }
+    .cf-nominee-icon {
+      width: 44px; height: 44px; border-radius: 4px;
+      background: rgba(245,158,11,0.07); border: 1px dashed rgba(245,158,11,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px;
+      color: rgba(245,158,11,0.36); text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .cf-nominee-type {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.28);
+    }
+    .cf-nominee h3 { font-size: 17px; margin-bottom: 0; }
+    .cf-nominee p { font-size: 13px; color: rgba(255,255,255,0.42); flex: 1; }
+    .cf-vote-btn {
+      height: 42px; width: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 500;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 4px; color: rgba(255,255,255,0.52); cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .cf-vote-btn:not(:disabled):hover { background: rgba(132,204,22,0.08); border-color: rgba(132,204,22,0.28); color: #84cc16; }
+    .cf-vote-btn.voted { background: rgba(132,204,22,0.08); border-color: rgba(132,204,22,0.28); color: #84cc16; }
+    .cf-vote-btn:disabled { cursor: default; opacity: 0.62; }
+    .cf-vote-note {
+      margin-top: 24px; padding: 18px 20px;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; line-height: 1.7;
+      color: rgba(255,255,255,0.42);
+    }
+    .cf-selection-note {
+      margin: 28px 0 22px; padding: 22px 24px;
+      background: rgba(132,204,22,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 2px solid rgba(132,204,22,0.36);
+      border-radius: 0 6px 6px 0;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cf-selection-note h3 {
+      font-size: 16px; margin: 0; color: rgba(255,255,255,0.78);
+    }
+    .cf-selection-note p {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.45); margin: 0;
+    }
+    .cf-selection-note strong { color: rgba(245,174,91,0.74); font-weight: 600; }
+
+    /* ── NOMINATE FORM ── */
+    .cf-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cf-form-full { grid-column: 1 / -1; }
+    .cf-field { display: flex; flex-direction: column; gap: 5px; }
+    .cf-label {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.32);
+    }
+    .cf-label span { text-transform: none; letter-spacing: 0; opacity: 0.7; font-weight: 400; }
+    .cf-input {
+      height: 44px; padding: 0 14px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 4px; color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .cf-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245,174,91,0.08); }
+    .cf-input::placeholder { color: rgba(255,255,255,0.18); }
+    .cf-field-help { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; color: rgba(255,255,255,0.24); line-height: 1.5; }
+    .cf-textarea {
+      padding: 12px 14px; min-height: 96px; resize: vertical;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 4px; color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; line-height: 1.55;
+      outline: none; transition: border-color 0.2s;
+    }
+    .cf-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245,174,91,0.08); }
+    .cf-textarea::placeholder { color: rgba(255,255,255,0.18); }
+    .cf-form-foot { margin-top: 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .cf-consent {
+      display: flex; align-items: flex-start; gap: 10px; width: 100%;
+      max-width: 720px; padding: 12px 14px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(245,174,91,0.16);
+      border-radius: 6px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.55;
+      color: rgba(255,239,214,0.68);
+    }
+    .cf-consent input {
+      flex: 0 0 auto; width: 16px; height: 16px; margin: 2px 0 0;
+      accent-color: #84cc16;
+    }
+    .cf-consent:focus-within {
+      border-color: rgba(245,174,91,0.42);
+      box-shadow: 0 0 0 3px rgba(245,174,91,0.08);
+    }
+    .cf-form-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.55; max-width: 440px; }
+    .cf-form-message {
+      display: none; margin-top: 18px; padding: 18px 20px;
+      border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.025);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; line-height: 1.7;
+      color: rgba(255,255,255,0.52);
+    }
+    .cf-form-message.is-visible { display: block; }
+    .cf-form-message.is-success { border-color: rgba(132,204,22,0.28); background: rgba(132,204,22,0.045); }
+    .cf-form-message.is-error { border-color: rgba(245,158,11,0.28); background: rgba(245,158,11,0.045); }
+    .cf-form-message strong { display: block; color: rgba(255,255,255,0.78); margin-bottom: 6px; }
+
+    /* ── PIPPUP SECTION ── */
+    .cf-pippup-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(245,158,11,0.18);
+      border-radius: 6px; padding: 56px 64px;
+      display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .cf-pippup-card::after {
+      content: ""; position: absolute; top: -80px; right: -80px;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .cf-pippup-avatar {
+      width: 128px; height: 128px; border-radius: 50%; flex-shrink: 0;
+      background: radial-gradient(circle at 48% 14%, rgba(255,219,159,0.1), transparent 45%),
+                  linear-gradient(150deg, rgba(31,24,20,0.98), rgba(9,8,10,0.98));
+      border: 1px solid rgba(245,174,91,0.26);
+      box-shadow: 0 0 28px rgba(245,174,91,0.1), 0 14px 36px rgba(0,0,0,0.42);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .cf-pippup-label {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245,174,91,0.5);
+      text-align: center; margin-top: 10px;
+    }
+    .cf-pippup-text { position: relative; z-index: 1; }
+    .cf-pippup-text h2 { font-size: clamp(22px,2.8vw,32px); margin-bottom: 14px; }
+    .cf-pippup-text p { font-size: 15px; color: rgba(255,255,255,0.52); }
+    .cf-pippup-lines {
+      margin-top: 24px; padding: 20px 24px;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-left: 2px solid rgba(245,158,11,0.3);
+      border-radius: 0 4px 4px 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .cf-pippup-lines span {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px;
+      font-style: italic; color: rgba(255,255,255,0.38); line-height: 1.5;
+    }
+
+    /* ── WALL OF RECOGNITION ── */
+    .cf-wall-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .cf-wall-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px; padding: 22px;
+      display: flex; flex-direction: column; gap: 6px;
+      transition: border-color 0.25s;
+    }
+    .cf-wall-card:hover { border-color: rgba(245,158,11,0.2); }
+    .cf-wall-card.current { border-color: rgba(245,158,11,0.28); background: rgba(245,158,11,0.02); }
+    .cf-wall-card.future { opacity: 0.32; border-style: dashed; pointer-events: none; }
+    .cf-wall-month {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9px; font-weight: 500;
+      letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.28);
+    }
+    .cf-wall-card.current .cf-wall-month { color: var(--accent); }
+    .cf-wall-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.78); letter-spacing: -0.01em; }
+    .cf-wall-type { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.36); }
+    .cf-wall-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: auto; padding-top: 6px; }
+    .cf-wall-card.current .cf-wall-dot { background: var(--accent); }
+    .cf-wall-card:not(.current):not(.future) .cf-wall-dot { background: var(--lime); }
+    .cf-wall-footer { margin-top: 20px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.25); font-style: italic; }
+    .cf-wall-forged { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; color: rgba(245,158,11,0.42); letter-spacing: 0.04em; font-style: italic; margin: 0; }
+
+    /* ── STATS BLOCK ── */
+    .cf-stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px; overflow: hidden;
+      margin-top: 56px;
+    }
+    .cf-stat {
+      background: #070707;
+      padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .cf-stat-value {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: clamp(28px,3vw,40px); letter-spacing: -0.02em; color: #fff;
+      line-height: 1;
+    }
+    .cf-stat-label {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,0.32); letter-spacing: 0.02em;
+    }
+    .cf-stat-note {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px;
+      color: rgba(245,158,11,0.45); font-style: italic; margin-top: 2px;
+    }
+    @media (max-width: 720px) { .cf-stats { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 400px) { .cf-stats { grid-template-columns: 1fr; } }
+
+    /* ── NEXT-DOOR / PROMISE ── */
+    .cf-promise {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 72px 80px;
+      position: relative; overflow: hidden;
+    }
+    .cf-promise::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 100% at 88% 50%, rgba(245,158,11,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cf-promise-inner { position: relative; z-index: 1; max-width: 720px; }
+    .cf-promise h2 { font-size: clamp(24px,3.2vw,40px); margin-bottom: 28px; }
+    .cf-promise p { font-size: 15px; color: rgba(255,255,255,0.52); margin-bottom: 14px; }
+    .cf-promise-sig {
+      margin-top: 36px; padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .cf-promise-mark {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cf-promise-sig-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); }
+    .cf-promise-sig-text strong { display: block; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 1px; }
+
+    /* ── FOOTER ── */
+    .community-footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 28px 0;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px;
+      color: rgba(255,255,255,0.18); flex-wrap: wrap;
+    }
+    .community-footer a { color: rgba(255,255,255,0.28); text-decoration: none; }
+    .community-footer a:hover { color: rgba(255,255,255,0.6); }
+    .community-footer-links { display: flex; gap: 20px; }
+
+    /* ── PIPPUP WIDGET ── */
+    
+      .pippup-ear-left, .pippup-tail, .pippup-head-idle, .pippup-eye-lid, .pippup-rune { animation: none; }
+    }
+  </style>
+</head>
+<body data-room="community-forge">
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="YewForge Digital Entrance">
+        <img class="brand-mark" src="assets/yewforge_brand_icon.png" alt="YewForge Digital mark">
+        <span>YewForge</span>
+        <strong>Digital</strong>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Campus rooms">
+        <a href="index.html">Entrance</a>
+        <a href="forge.html">The Forge</a>
+        <a href="forge-stack.html">Partners</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="laboratory.html">Laboratory</a>
+        <a href="community-forge.html" aria-current="page">Community Forge</a>
+        <a href="story.html">Story</a>
+        <a href="begin.html">Begin</a>
+      </nav>
+    </header>
+<!-- NAV -->
+<div class="cf-shell">
+
+  <!-- ROOM BAR -->
+  <div class="cf-room-bar">
+    <span class="cf-room-bar-dot"></span>
+    Community Forge &nbsp;·&nbsp; Room 04 &nbsp;·&nbsp; Weston-super-Mare &amp; North Somerset
+  </div>
+
+  <!-- ── HERO ── -->
+  <div class="cf-hero">
+    <div class="cf-hero-inner">
+      <p class="eyebrow">Community Forge · YewForge Digital</p>
+      <h1>Good work deserves<br>to be <em>recognised.</em></h1>
+      <p class="lead" style="max-width:540px;">
+        Every month, we shine a light on a local charity, community group, volunteer organisation, school project, or cause making a genuine difference around <strong>Weston-super-Mare and North Somerset.</strong>
+      </p>
+      <p style="max-width:520px;margin-top:14px;font-size:15px;color:rgba(255,255,255,0.42);">
+        We don't collect donations. We don't run campaigns. We simply believe that the people doing good work in our communities deserve to be seen — and we're glad to help with that.
+      </p>
+      <div class="cf-hero-promise">Good work deserves to be recognised</div>
+    </div>
+  </div>
+
+  <!-- ── SPOTLIGHT ── -->
+  <div class="section" id="spotlight">
+    <div class="section-hd">
+      <p class="eyebrow-lime eyebrow">This Month's Spotlight</p>
+      <h2>This Month's Spotlight</h2>
+      <p>One organisation. One month. A little more light.</p>
+    </div>
+
+    <div class="cf-spotlight">
+      <div class="cf-spotlight-visual">
+        <img class="cf-spotlight-image" src="assets/community-forge/weston-foodbank-community-collage-full.jpg" alt="Weston-super-Mare Foodbank community activity collage" loading="lazy">
+        <span class="cf-spotlight-media-credit">July 2026 spotlight</span>
+        <div class="cf-spotlight-logo-badge" aria-label="Weston-super-Mare Foodbank logo">
+          <img src="assets/community-forge/weston-foodbank-logo.jpg" alt="Weston-super-Mare Foodbank">
+        </div>
+      </div>
+      <div class="cf-spotlight-body">
+        <div class="cf-spotlight-tag">✦ Community Spotlight</div>
+        <h3>Weston-super-Mare Foodbank</h3>
+        <div class="cf-spot-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Weston-super-Mare / North Somerset
+        </div>
+        <p>Weston-super-Mare Foodbank supports local people in crisis by providing emergency food through a voucher referral system. They work with local agencies such as Citizens Advice, housing support officers, children&rsquo;s centres, health visitors, social services and local charities to help people access appropriate support.</p>
+        <p>Community Forge is highlighting Weston-super-Mare Foodbank because their work is practical, local and deeply important: helping people facing crisis access emergency food and support when they need it most.</p>
+        <div class="cf-actions">
+          <a class="btn btn-sm" href="https://westonsupermare.foodbank.org.uk/" target="_blank" rel="noopener">Visit Weston-super-Mare Foodbank&rsquo;s official page &#8599;</a>
+          <a class="btn btn-outline btn-sm" href="#vote">Vote for next month</a>
+        </div>
+        <p class="cf-disclaimer">YewForge Digital does not collect donations, process money, issue foodbank vouchers, or speak on behalf of Weston-super-Mare Foodbank. Visitors should use the official Foodbank website for current information about getting help, volunteering, donating food or supporting them directly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VOTE ── -->
+  <div class="section" id="vote">
+    <div class="section-hd">
+      <p class="eyebrow">Community Vote</p>
+      <h2>Choose Next Month's Spotlight</h2>
+      <p>Community voting opens once nominations have been reviewed and three local causes have been shortlisted. For launch month, YewForge has chosen Weston-super-Mare Foodbank as the first Community Forge spotlight.</p>
+    </div>
+
+        <div class="cf-selection-note" aria-labelledby="selection-philosophy-title">
+      <h3 id="selection-philosophy-title">How nominees are chosen</h3>
+      <p>Community Forge exists to shine a light on organisations where a little extra recognition can make a genuine difference. Public nominations are open now; voting opens once the first public shortlist is ready.</p>
+      <p>When selecting monthly nominees, YewForge will generally favour smaller local charities, new or emerging community organisations, volunteer-led initiatives, under-recognised local projects, and groups making a practical difference around Weston-super-Mare and North Somerset.</p>
+      <p><strong>This is not a popularity contest or an award.</strong> The shortlist will be chosen from suitable nominations, then the final spotlight will be chosen by community vote once voting is live. Established charities may still be featured where their work is particularly relevant or important locally.</p>
+    </div>
+
+    <div class="cf-vote-note"><strong style="color:rgba(255,255,255,0.65);">Know someone who should be considered?</strong> <a href="#nominate" style="color:#84cc16;text-decoration:none;border-bottom:1px solid rgba(132,204,22,0.3);">Nominate a local cause below.</a></div>
+
+    <div class="cf-vote-grid">
+      <div class="cf-nominee">
+        <div class="cf-nominee-icon">Soon</div>
+        <p class="cf-nominee-type">Emerging project &middot; Weston-super-Mare</p>
+        <h3>Nominee Slot One</h3>
+        <p>Preview slot for a suitable local nominee. Final details will appear here once nominations have been reviewed and the shortlist is confirmed.</p>
+        <button class="cf-vote-btn" type="button" data-vote="a" disabled aria-disabled="true">Voting opens soon</button>
+      </div>
+      <div class="cf-nominee">
+        <div class="cf-nominee-icon">Soon</div>
+        <p class="cf-nominee-type">Volunteer-led initiative &middot; North Somerset</p>
+        <h3>Nominee Slot Two</h3>
+        <p>Preview slot for a volunteer-led or emerging local group. Final details will appear here once the shortlist is confirmed.</p>
+        <button class="cf-vote-btn" type="button" data-vote="b" disabled aria-disabled="true">Voting opens soon</button>
+      </div>
+      <div class="cf-nominee">
+        <div class="cf-nominee-icon">Soon</div>
+        <p class="cf-nominee-type">Practical local support &middot; Weston-super-Mare</p>
+        <h3>Nominee Slot Three</h3>
+        <p>Preview slot for an under-recognised local cause where visibility could help. Final details will appear here once the shortlist is confirmed.</p>
+        <button class="cf-vote-btn" type="button" data-vote="c" disabled aria-disabled="true">Voting opens soon</button>
+      </div>
+    </div>
+
+    <div class="cf-vote-note">
+      <strong style="color:rgba(255,255,255,0.65);">How nominations work.</strong> Every nomination is read by the YewForge team. For the next cycle, three suitable organisations will be shortlisted from public nominations. Once voting is live, the community will choose the next spotlight.
+    </div>
+  </div>
+
+  <!-- ── NOMINATE ── -->
+  <div class="section" id="nominate">
+    <div class="section-hd">
+      <p class="eyebrow">Nominate a Local Cause</p>
+      <h2>Know someone doing good work?</h2>
+      <p>Tell us about them. We especially welcome nominations for smaller, newer, or under-recognised local organisations doing meaningful work around Weston-super-Mare and North Somerset.</p>
+    </div>
+
+    <form class="cf-nomination-form" action="https://formspree.io/f/maqgbrje" method="POST" data-cf-nomination-form>
+      <input type="hidden" name="_subject" value="Community Forge Nomination">
+      <input type="hidden" name="source" value="Community Forge Nomination">
+      <div class="cf-form">
+        <div class="cf-field">
+          <label class="cf-label" for="nom-name">Your name <span>(optional)</span></label>
+          <input class="cf-input" id="nom-name" name="submitted_by" type="text" placeholder="e.g. Sarah T." autocomplete="name">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="nom-org">Organisation or project name <span>(required)</span></label>
+          <input class="cf-input" id="nom-org" name="organisation_name" type="text" placeholder="e.g. Weston Food Hub" required>
+        </div>
+        <div class="cf-field cf-form-full">
+          <label class="cf-label" for="nom-link">Website, social page, or any link <span>(optional but helpful)</span></label>
+          <input class="cf-input" id="nom-link" name="organisation_link" type="text" inputmode="url" placeholder="e.g. example.org or facebook.com/example" autocomplete="url" aria-describedby="nom-link-help">
+          <span class="cf-field-help" id="nom-link-help">You can leave out https:// - we will add it for you.</span>
+        </div>
+        <div class="cf-field cf-form-full">
+          <label class="cf-label" for="nom-what">What do they do? <span>(required)</span></label>
+          <textarea class="cf-textarea" id="nom-what" name="what_they_do" placeholder="What practical local work do they do? Who do they help?" required></textarea>
+        </div>
+        <div class="cf-field cf-form-full">
+          <label class="cf-label" for="nom-why">Why should they be highlighted? <span>(required)</span></label>
+          <textarea class="cf-textarea" id="nom-why" name="why_highlight_them" placeholder="Why would recognition help them now? Are they smaller, newer, or less visible than they deserve?" required></textarea>
+        </div>
+      </div>
+      <div class="cf-form-foot">
+        <label class="cf-consent" for="nom-review">
+          <input id="nom-review" name="review_expectation" type="checkbox" value="understood" required>
+          <span>I understand that nominations are reviewed by YewForge before any public shortlist or vote.</span>
+        </label>
+        <button class="btn" type="submit" aria-describedby="nomination-placeholder-note" data-cf-nomination-submit>Submit nomination</button>
+        <p class="cf-form-note" id="nomination-placeholder-note">Community Forge exists to help good work be seen, especially when it is still finding its feet.</p>
+      </div>
+      <div class="cf-form-message" role="status" aria-live="polite" data-cf-nomination-status></div>
+    </form>
+  </div>
+
+  <!-- ── PIPPUP ── -->
+  <div class="section--sm" id="meet-pippup">
+    <div class="cf-pippup-card">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;z-index:1;">
+        <div class="cf-pippup-avatar">
+          <svg width="96" height="96" viewBox="0 0 96 96" aria-label="PipPup" focusable="false">
+            <defs>
+              <linearGradient id="pp-coat-s" x1="22" y1="12" x2="70" y2="79" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f8b35f"/><stop offset="0.5" stop-color="#d86f32"/><stop offset="1" stop-color="#7b3f26"/>
+              </linearGradient>
+              <linearGradient id="pp-cream-s" x1="31" y1="36" x2="62" y2="72" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#fff2d7"/><stop offset="1" stop-color="#e9c99e"/>
+              </linearGradient>
+              <filter id="pp-sh-s" x="-22%" y="-22%" width="144%" height="144%">
+                <feDropShadow dx="0" dy="2" stdDeviation="1.4" flood-color="#000" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+            <path d="M60 63 C76 70 91 57 86 42 C82 28 66 31 62 45 C70 42 78 45 81 51 C78 59 68 61 57 56" fill="#d86f32" stroke="#3a261d" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" filter="url(#pp-sh-s)"/>
+            <path d="M82 43 C85 51 79 60 68 62" fill="none" stroke="#fff2d7" stroke-width="6.2" stroke-linecap="round" opacity="0.94"/>
+            <g>
+              <path d="M30 66 C31 54 39 45 50 45 C62 45 70 54 70 66 C70 78 62 85 50 85 C38 85 29 78 30 66Z" fill="url(#pp-coat-s)" stroke="#3a261d" stroke-width="2.6" filter="url(#pp-sh-s)"/>
+              <path d="M39 73 C43 77 57 77 61 73 C59 82 42 82 39 73Z" fill="url(#pp-cream-s)" opacity="0.95"/>
+            </g>
+            <path d="M28 37 C23 27 20 18 20 10 C30 13 38 22 42 31 Z" fill="#d86f32" stroke="#3a261d" stroke-width="2.6"/>
+            <path d="M68 37 C73 27 76 18 76 10 C66 13 58 22 54 31 Z" fill="#d86f32" stroke="#3a261d" stroke-width="2.6"/>
+            <path d="M28 30 C25 24 24 18 24 15 C29 18 34 24 37 29 Z" fill="#ffd9a7" opacity="0.94"/>
+            <path d="M68 30 C71 24 72 18 72 15 C67 18 62 24 59 29 Z" fill="#ffd9a7" opacity="0.94"/>
+            <path d="M23 43 C23 27 35 19 48 19 C61 19 73 27 73 43 C73 58 62 69 48 69 C34 69 23 58 23 43Z" fill="url(#pp-coat-s)" stroke="#3a261d" stroke-width="2.6" filter="url(#pp-sh-s)"/>
+            <path d="M31 47 C34 39 39 35 44 36 C44 46 40 54 35 56 C31 55 29 52 31 47Z" fill="url(#pp-cream-s)" opacity="0.98"/>
+            <path d="M65 47 C62 39 57 35 52 36 C52 46 56 54 61 56 C65 55 67 52 65 47Z" fill="url(#pp-cream-s)" opacity="0.98"/>
+            <path d="M39 50 C42 47 54 47 57 50 C55 60 41 60 39 50Z" fill="url(#pp-cream-s)" opacity="0.98"/>
+            <ellipse cx="39.5" cy="43.8" rx="3.4" ry="4" fill="#2a1712"/>
+            <ellipse cx="56.5" cy="43.8" rx="3.4" ry="4" fill="#2a1712"/>
+            <circle cx="40.4" cy="43.1" r="0.82" fill="#fff7e8"/>
+            <circle cx="57.4" cy="43.1" r="0.82" fill="#fff7e8"/>
+            <path d="M45.5 52 L50.5 52 C50 55 46 55 45.5 52Z" fill="#3a2018"/>
+            <path d="M42 58 C45 61 51 61 54 58" fill="none" stroke="#3a2018" stroke-width="1.9" stroke-linecap="round"/>
+            <path d="M48 30.5 L50.1 34.2 L48 37.9 L45.9 34.2 Z" fill="#22d3ee" opacity="0.64"/>
+            <!-- Community Forge leaf accessory -->
+            <path d="M42 25 C39 21 41 18 46 18 C47 22 45 24 42 25Z" fill="#86efac" stroke="#3a261d" stroke-width="1"/>
+          </svg>
+        </div>
+        <p class="cf-pippup-label">PipPup · Forge Scout</p>
+      </div>
+      <div class="cf-pippup-text">
+        <h2>Meet PipPup</h2>
+        <p>PipPup is YewForge's friendly forge scout — part puppy, part fox, part red panda, and all heart. He spends his days exploring the Campus, greeting visitors, and helping people find exactly the right place to begin.</p>
+        <p>Every month, PipPup proudly wears a new accessory in support of Community Forge and the wonderful organisations making a real difference around Weston-super-Mare and the surrounding area. This month he's wearing his leaf — a quiet nod to the good green work happening in our community. Keep an eye on his accessory; it changes with each new spotlight.</p>
+        <div class="cf-pippup-lines">
+          <span>"Psst — someone's doing brilliant work this month. Come and take a look."</span>
+          <span>"Every good cause deserves someone in their corner. Today, that's us."</span>
+          <span>"Three nominees. One vote. You get to decide who's next in the light."</span>
+          <span>"Got someone in mind? The Forge is always listening. Nominate them."</span>
+          <span>"The Campus is bigger than just us. Pull up a chair."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WALL OF RECOGNITION ── -->
+  <div class="section" id="wall">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px;">
+      <div>
+        <p class="eyebrow-lime eyebrow">Wall of Recognition</p>
+        <h2 style="margin-bottom:0;">Every cause we've highlighted</h2>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,0.3);max-width:260px;text-align:right;line-height:1.6;margin:0;">This wall grows month by month. Every organisation here earned their place.</p>
+    </div>
+
+    <!-- Community Forge stats hook for future JS wiring -->
+    <div class="cf-stats" id="cf-stats">
+      <div class="cf-stat">
+        <span class="cf-stat-value" data-stat="recognised">0</span>
+        <span class="cf-stat-label">Organisations recognised</span>
+      </div>
+      <div class="cf-stat">
+        <span class="cf-stat-value" data-stat="votes">0</span>
+        <span class="cf-stat-label">Community votes</span>
+      </div>
+      <div class="cf-stat">
+        <span class="cf-stat-value" data-stat="nominations">0</span>
+        <span class="cf-stat-label">Nominations received</span>
+      </div>
+      <div class="cf-stat">
+        <span class="cf-stat-value" style="font-size:clamp(14px,1.6vw,18px);color:rgba(255,255,255,0.45);">Just getting started</span>
+        <span class="cf-stat-label">Spotlight archive</span>
+        <span class="cf-stat-note">This will grow month by month</span>
+      </div>
+    </div>
+
+    <div class="cf-wall-grid">
+      <div class="cf-wall-card current">
+        <!-- Future: link to /community-forge/organisation-slug -->
+        <p class="cf-wall-month">July 2026 · Current</p>
+        <p class="cf-wall-name">Weston-super-Mare Foodbank</p>
+        <p class="cf-wall-type">Foodbank &middot; Weston-super-Mare / North Somerset</p>
+        <p class="cf-wall-forged">Forged into Community Forge · July 2026</p>
+        <div class="cf-wall-dot"></div>
+      </div>
+      <div class="cf-wall-card future">
+        <p class="cf-wall-month">August 2026</p>
+        <p class="cf-wall-name">Coming next month</p>
+        <p class="cf-wall-type">—</p>
+      </div>
+      <div class="cf-wall-card future">
+        <p class="cf-wall-month">September 2026</p>
+        <p class="cf-wall-name">To be announced</p>
+        <p class="cf-wall-type">—</p>
+      </div>
+      <div class="cf-wall-card future">
+        <p class="cf-wall-month">October 2026</p>
+        <p class="cf-wall-name">To be announced</p>
+        <p class="cf-wall-type">—</p>
+      </div>
+    </div>
+
+    <p class="cf-wall-footer">This wall is just getting started. A year from now, it'll tell a story we're proud of.</p>
+  </div>
+
+  <!-- ── PROMISE ── -->
+  <div class="section--sm" id="promise">
+    <div class="cf-promise">
+      <div class="cf-promise-inner">
+        <p class="eyebrow">The Community Forge Promise</p>
+        <h2>Supporting local causes shouldn't wait until later.</h2>
+        <p>YewForge Digital is a new studio. We're still finding our feet, building our reputation, and figuring out what we want to be. But we knew from the beginning that we didn't want to wait until we felt "established enough" to do something meaningful locally.</p>
+        <p>Community Forge isn't a PR exercise. It's not a tick-box. It's our belief that every business — no matter how small or how new — has the ability to shine a light on the good work happening around them. Recognition costs nothing. Attention matters.</p>
+        <p>We're not here to speak for anyone, speak over anyone, or claim credit for anyone's hard work. We're just here to make sure the right people get seen — and to grow a little community of our own along the way.</p>
+        <p><strong>Good work deserves to be recognised. We're glad to help with that.</strong></p>
+        <div class="cf-promise-sig">
+          <div class="cf-promise-mark">
+            <img src="assets/yewforge_brand_icon.png" alt="" width="18" height="18" onerror="this.style.display='none'">
+          </div>
+          <div class="cf-promise-sig-text">
+            <strong>YewForge Digital</strong>
+            Weston-super-Mare · Founder-led · Est. 2026
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="cf-footer">
+    <div>
+      <span>© 2026 YewForge Digital.</span>
+      <span style="margin-left:16px;opacity:0.5;">Community Forge — Room 04</span>
+    </div>
+    <div class="cf-footer-links">
+      <a href="index.html">Back to Studio</a>
+      <a href="campus.html">Campus</a>
+      <a href="#nominate">Nominate a cause</a>
+    </div>
+  </footer>
+
+</div><!-- /cf-shell -->
+
+<!-- ── PIPPUP WIDGET ── -->
+
+<aside class="pippup-guide" data-pippup-guide>
+    <section class="pippup-panel" id="pippup-panel" aria-labelledby="pippup-title">
+      <div class="pippup-panel-header">
+        <p class="pippup-panel-title" id="pippup-title"><strong>Hi, I&rsquo;m PipPup &#128062;</strong><span>Need a paw finding the right forge?</span></p>
+        <button class="pippup-close" type="button" aria-label="Minimise PipPup guide" data-pippup-close>&times;</button>
+      </div>
+      <hr class="pippup-divider" aria-hidden="true" />
+      <section class="pippup-community" aria-labelledby="pippup-community-title">
+        <h2 class="pippup-community-title" id="pippup-community-title">&#127793; Community Forge</h2>
+        <p class="pippup-community-text">Come and meet this month&rsquo;s community spotlight.</p>
+        <p class="pippup-community-subtext">Good work deserves to be recognised.</p>
+        <a class="pippup-community-link" href="#spotlight">Visit Community Forge</a>
+      </section>
+      <hr class="pippup-divider" aria-hidden="true" />
+      <nav class="pippup-actions" aria-label="PipPup guide links">
+        <a href="forge.html">Start a new website</a>
+        <a href="forge.html">Fix or improve a website</a>
+        <a href="index.html#work">Meet Fenryr</a>
+        <a href="story.html">Read the Forge Log</a>
+        <a href="index.html#contact">Say hello</a>
+      </nav>
+    </section>
+
+    <button class="pippup-toggle" type="button" aria-label="Open PipPup guide" aria-expanded="false" aria-controls="pippup-panel" data-pippup-toggle>
+      <svg class="pippup-mascot" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="pippup-coat" x1="22" y1="12" x2="70" y2="79" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#f8b35f" />
+            <stop offset="0.5" stop-color="#d86f32" />
+            <stop offset="1" stop-color="#7b3f26" />
+          </linearGradient>
+          <linearGradient id="pippup-cream" x1="31" y1="36" x2="62" y2="72" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff2d7" />
+            <stop offset="1" stop-color="#e9c99e" />
+          </linearGradient>
+          <filter id="pippup-soft-shadow" x="-22%" y="-22%" width="144%" height="144%">
+            <feDropShadow dx="0" dy="2" stdDeviation="1.4" flood-color="#000000" flood-opacity="0.28" />
+          </filter>
+          <filter id="pippup-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.13 0 0 0 0 0.83 0 0 0 0 0.93 0 0 0 0.28 0" />
+            <feBlend in="SourceGraphic" mode="screen" />
+          </filter>
+        </defs>
+
+        <path class="pippup-tail" d="M60 63 C76 70 91 57 86 42 C82 28 66 31 62 45 C70 42 78 45 81 51 C78 59 68 61 57 56" fill="#d86f32" stroke="#3a261d" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" filter="url(#pippup-soft-shadow)" />
+        <path d="M82 43 C85 51 79 60 68 62" fill="none" stroke="#fff2d7" stroke-width="6.2" stroke-linecap="round" opacity="0.94" />
+        <g class="pippup-body">
+          <path d="M30 66 C31 54 39 45 50 45 C62 45 70 54 70 66 C70 78 62 85 50 85 C38 85 29 78 30 66Z" fill="url(#pippup-coat)" stroke="#3a261d" stroke-width="2.6" stroke-linejoin="round" filter="url(#pippup-soft-shadow)" />
+          <path d="M39 73 C43 77 57 77 61 73 C59 82 42 82 39 73Z" fill="url(#pippup-cream)" opacity="0.95" />
+          <path d="M36 79 C34 84 32 88 29 90 M63 79 C65 84 67 88 70 90" fill="none" stroke="#3a261d" stroke-width="2.5" stroke-linecap="round" opacity="0.82" />
+        </g>
+
+        <g class="pippup-head-idle">
+          <g class="pippup-head" filter="url(#pippup-soft-shadow)">
+            <path class="pippup-ear-left" d="M28 37 C23 27 20 18 20 10 C30 13 38 22 42 31 Z" fill="#d86f32" stroke="#3a261d" stroke-width="2.6" stroke-linejoin="round" />
+            <path d="M68 37 C73 27 76 18 76 10 C66 13 58 22 54 31 Z" fill="#d86f32" stroke="#3a261d" stroke-width="2.6" stroke-linejoin="round" />
+            <path d="M28 30 C25 24 24 18 24 15 C29 18 34 24 37 29 Z" fill="#ffd9a7" opacity="0.94" />
+            <path d="M68 30 C71 24 72 18 72 15 C67 18 62 24 59 29 Z" fill="#ffd9a7" opacity="0.94" />
+            <path d="M23 43 C23 27 35 19 48 19 C61 19 73 27 73 43 C73 58 62 69 48 69 C34 69 23 58 23 43Z" fill="url(#pippup-coat)" stroke="#3a261d" stroke-width="2.6" stroke-linejoin="round" />
+            <path d="M31 47 C34 39 39 35 44 36 C44 46 40 54 35 56 C31 55 29 52 31 47Z" fill="url(#pippup-cream)" opacity="0.98" />
+            <path d="M65 47 C62 39 57 35 52 36 C52 46 56 54 61 56 C65 55 67 52 65 47Z" fill="url(#pippup-cream)" opacity="0.98" />
+            <path d="M39 50 C42 47 54 47 57 50 C55 60 41 60 39 50Z" fill="url(#pippup-cream)" opacity="0.98" />
+            <path d="M36 38 C39 36 42 36 44 38" fill="none" stroke="#4a2c22" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+            <path d="M52 38 C55 36 58 36 60 38" fill="none" stroke="#4a2c22" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+            <g class="pippup-eye-lid">
+              <ellipse cx="39.5" cy="43.8" rx="3.4" ry="4" fill="#2a1712" />
+              <ellipse cx="56.5" cy="43.8" rx="3.4" ry="4" fill="#2a1712" />
+              <g class="pippup-gaze">
+                <circle cx="40.4" cy="43.1" r="0.82" fill="#fff7e8" />
+                <circle cx="57.4" cy="43.1" r="0.82" fill="#fff7e8" />
+              </g>
+            </g>
+            <path d="M45.5 52 L50.5 52 C50 55 46 55 45.5 52Z" fill="#3a2018" />
+            <path d="M42 58 C45 61 51 61 54 58" fill="none" stroke="#3a2018" stroke-width="1.9" stroke-linecap="round" />
+            <path class="pippup-rune" d="M48 30.5 L50.1 34.2 L48 37.9 L45.9 34.2 Z" fill="#22d3ee" opacity="0.64" filter="url(#pippup-glow)" />
+            <g class="pippup-accessory pippup-accessory--leaf" aria-hidden="true">
+              <path d="M42 25 C39 21 41 18 46 18 C47 22 45 24 42 25Z" fill="#86efac" stroke="#3a261d" stroke-width="1" />
+            </g>
+            <g class="pippup-accessory pippup-accessory--scarf" aria-hidden="true">
+              <path d="M34 61 C42 65 54 65 62 61" fill="none" stroke="#7c3aed" stroke-width="3.2" stroke-linecap="round" />
+            </g>
+            <g class="pippup-accessory pippup-accessory--bee" aria-hidden="true">
+              <circle cx="62" cy="28" r="2.2" fill="#facc15" stroke="#3a261d" stroke-width="0.8" />
+            </g>
+            <g class="pippup-accessory pippup-accessory--pride" aria-hidden="true">
+              <path d="M34 62 C42 66 54 66 62 62" fill="none" stroke="#f97316" stroke-width="2.7" stroke-linecap="round" />
+            </g>
+            <g class="pippup-accessory pippup-accessory--poppy" aria-hidden="true">
+              <circle cx="36" cy="28" r="2.4" fill="#dc2626" stroke="#3a261d" stroke-width="0.8" />
+            </g>
+          </g>
+        </g>
+        <path class="pippup-body" d="M36 67 C39 70 43 70 45 67 M55 67 C58 70 62 70 64 67" fill="none" stroke="#3a261d" stroke-width="2.1" stroke-linecap="round" opacity="0.7" />
+      </svg>
+    </button>
+    <span class="pippup-name" aria-hidden="true"><strong>&#128062; PipPup</strong><span>Forge Guide</span></span>
+    <span class="pippup-status" data-pippup-status aria-hidden="true"></span>
+  </aside>
+  </div>
+
+<script>
+  (function initCommunityForgeNomination() {
+    var form = document.querySelector('[data-cf-nomination-form]');
+    if (!form || !window.fetch) return;
+
+    var submit = form.querySelector('[data-cf-nomination-submit]');
+    var status = form.querySelector('[data-cf-nomination-status]');
+    var linkInput = form.querySelector('[name="organisation_link"]');
+    var defaultSubmitText = submit ? submit.textContent : '';
+    var isSubmitting = false;
+
+    function normaliseLink(value) {
+      var trimmed = value.trim();
+      if (!trimmed) return '';
+      if (!/^https?:\/\//i.test(trimmed)) {
+        trimmed = 'https://' + trimmed;
+      }
+      return trimmed;
+    }
+
+    function looksLikeLink(value) {
+      if (!value) return true;
+      return /^https?:\/\/[^\s]+\.[^\s]+/i.test(value);
+    }
+
+    function trimFormValues() {
+      Array.prototype.forEach.call(form.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]), textarea'), function (field) {
+        field.value = field.value.trim();
+      });
+    }
+
+    function showMessage(type, html) {
+      if (!status) return;
+      status.className = 'cf-form-message is-visible is-' + type;
+      status.innerHTML = html;
+    }
+
+    function clearMessage() {
+      if (!status) return;
+      status.className = 'cf-form-message';
+      status.textContent = '';
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (isSubmitting) return;
+
+      trimFormValues();
+
+      if (linkInput) {
+        var normalisedLink = normaliseLink(linkInput.value);
+        if (!looksLikeLink(normalisedLink)) {
+          showMessage('error', '<strong>That link does not look quite right.</strong><span>Please enter something like example.org or facebook.com/example, or leave the field blank.</span>');
+          linkInput.focus();
+          return;
+        }
+        linkInput.value = normalisedLink;
+      }
+
+      isSubmitting = true;
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Submitting...';
+      }
+      clearMessage();
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      }).then(function (response) {
+        if (!response.ok) throw new Error('Form submission failed');
+        form.reset();
+        showMessage('success', '<strong>Thank you for your nomination.</strong><span>Every submission is read personally.</span><br><span>Community Forge exists to help good local organisations receive the recognition they deserve.</span>');
+      }).catch(function () {
+        showMessage('error', '<strong>Something went wrong while sending your nomination.</strong><span>Please try again in a moment.</span>');
+      }).finally(function () {
+        isSubmitting = false;
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = defaultSubmitText;
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
+
+
+

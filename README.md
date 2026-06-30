@@ -8,6 +8,7 @@ The site is structured as a small "Yewforge Campus" with separate HTML rooms:
 - `forge.html` - The Forge
 - `workshop.html` - Workshop
 - `laboratory.html` - Laboratory
+- `community-forge.html` - Community Forge
 - `story.html` - Story
 - `begin.html` - Begin
 
